@@ -31,6 +31,7 @@ describe Service do
       end
       
       it "is unique" do
+        service.save
         unique_name_service = Service.new(:name => "New Service")
         unique_name_service.should_not be_valid
         unique_name_service.save.should be_false

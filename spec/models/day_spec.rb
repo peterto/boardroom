@@ -16,7 +16,7 @@ describe Day do
           recent_status_image.should == statuses[service.name][i]
         end
       end
-    end    
+    end
   end
-
+  
 end

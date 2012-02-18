@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe Day do
-  
+  it { should validate_presence_of (:service_id) }
+  it { should validate_presence_of (:status_id) }
+  it { should validate_presence_of (:event_date) }
   describe "all days events" do
     # Use fixtures for test data
     let(:statuses) { Days.get_all_statuses }

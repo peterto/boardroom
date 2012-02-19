@@ -97,7 +97,7 @@ describe ServicesController do
     end
     
     it "destroys the service" do
-      delete :destroy, :id => @service.id.to_s
+      delete :destroy, :id => @service
       Service.count.should == 0
     end
   end

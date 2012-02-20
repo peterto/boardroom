@@ -1,4 +1,7 @@
 RubyStashboard::Application.routes.draw do
+  get "events/index"
+  resources :events
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -2,16 +2,7 @@ require 'spec_helper'
 
 describe StatusesController do
 
-  # let(:status) { Status.new }
-  
   describe 'index' do
-    
-    # before(:each) do
-    #   status.message = 'Test Message'
-    #   status.service_id = 1
-    #   status.status_id = 1
-    #   status.save
-    # end
     
     before(:each) do
       @status = Fabricate(:status)
@@ -51,7 +42,6 @@ describe StatusesController do
     it 'assigns the requested status to @status' do
       get :show, :id => @status.id
       # Status.find(:status.id).id.should = @status.id
-     
     end
   end
   
@@ -63,6 +53,7 @@ describe StatusesController do
         post :create, :id => { :name => 'New Status', :image => 'New Status image'}
         Status.count.should == 1
         Status.last.name.should == 'New Status'
+        Status.last.image.should == 'New Status image'
       end    
     
     end
@@ -75,12 +66,18 @@ describe StatusesController do
       @status = Fabricate(:status)
     end
         
-    context 'with a valid message' do
+    context 'with a valid name' do
       it 'updates the status' do
         put :update, :id => @status, :status => { :name => 'New new status' }
         @status.reload.name.should == 'New new status'
       end
+    end
     
+    context 'with a valid image' do
+      it 'updates the status' do
+        put :update, :id => @status, :status => { :image => 'New new image' }
+        @status.reload.image.should == 'New new image'
+      end
     end
   end
   

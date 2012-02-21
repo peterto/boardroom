@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Service do
+describe Service do 
   describe "new" do
     let(:service) { Service.new }
     

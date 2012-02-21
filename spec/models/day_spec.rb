@@ -11,7 +11,7 @@ describe Day do
       Fabricate(:event)
     end
     
-    let(:statuses) { Day.get_all_statuses }
+    let(:statuses) { Day.all }
     let(:services) { Service.all }
     
     it "returns the most recent status for each of the last 6 days for every service" do      

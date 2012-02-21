@@ -7,23 +7,30 @@ describe Day do
   
   describe "all days events" do
     # Fabricate events
-    10.times do
-      Fabricate(:event)
+    1.times do
+      Fabricate(:event, :service_id => 1)
+      Fabricate(:event, :service_id => 2)
     end
     
-    # Fabricate a service. NOTE: Need to make sure this service has an id of 1 so that it matches the service_id of fabricated events 
+    # Fabricate services 
     Fabricate(:service, :id => 1)
+    Fabricate(:service, :id => 2)
     
     let(:days) { Day.get_all_statuses }
     let(:services) { Service.all }
     
-    it "returns the most recent status for each of the last 6 days for every service" do      
+    it "returns the most recent status for each of the last 6 days for each service" do
       services.each do |service|
         6.times do |i|
           # Get the date to look at and make sure the status is the most recent status past that date 
           end_time = Time.now.end_of_day - 60*60*24*i
-          recent_status = service.events.where("events.created_at < ?", end_time).order("events.created_at DESC").first
-          recent_status.status_id.should == days[service.id][i].status_id
+          record_status = service.events.where("events.created_at < ?", end_time).order("events.created_at DESC").first
+          if record_status.nil?
+            status = 4
+          else
+            status = record_status.status_id
+          end
+          status.should == days[service.id][i].status_id
         end
       end
     end

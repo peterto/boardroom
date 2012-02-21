@@ -5,21 +5,34 @@ class Day < ActiveRecord::Base
   belongs_to :service
   belongs_to :status
   
-  # This essentially removes all records for this service and replaces them with new ones
-  def self.update_statuses_for(service_id)
-    # First delete all the day records for this particular service_id
-    delete_all("service_id = #{service_id}")
-    
-    # Then, insert the most recent event for each of the last 6 days
+  # On service creation, create 6 day records
+  def self.add_statuses_for(service)
+    # Insert six rows into the table for this service with status id of 4
     6.times do |i|
-      current_time = Time.now.end_of_day - 60*60*24*i
-      most_recent_event = Event.where("created_at < ? AND service_id = ?", current_time, service_id).order("created_at DESC").first
-      if most_recent_event.nil?
-        # A status id of 4 indicates that the status is N/A or that the service did not exist at this time
-        create(:service_id => service_id, :status_id => 4, :date => Date.parse(current_time.to_s))
-      else
-        create(:service_id => service_id, :status_id => most_recent_event.status_id, :date => Date.parse(current_time.to_s))
-      end
+      date = Date.today - i
+      create(:service_id => service.id, :status_id => 4, :date => date)
+    end
+  end
+  
+  # For status change
+  def self.update_record_with(event)
+    record = where("service_id = ?", event.service_id).order("date DESC").first.id
+    update(record, :status_id => event.status_id)
+  end
+  
+  # For delayed job
+  def self.add_new_record
+    services = Service.all
+    services.each do |service|
+      # Find the most recent event for a service
+      event = Event.where("service_id = ?", service.id).order("created_at DESC").limit(1).first
+
+      # Insert a day record for most recent event
+      create(:service_id => event.service_id, :status_id => event.status_id, :date => Date.parse(event.created_at.to_s))
+
+      # Delete the last day record so that we always maintain six records per service
+      last_id = where("service_id = ?", event.service_id).order("date ASC").first.id
+      delete(last_id)
     end
   end
   

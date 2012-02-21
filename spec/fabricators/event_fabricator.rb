@@ -1,7 +1,5 @@
 Fabricator(:event) do
   message { Fabricate.sequence(:message) { |i| "Event_#{i}" } }
-  service_id '1'
-  status_id '1'
+  service_id { Random.new.rand(1..3) }
+  status_id { Random.new.rand(1..3) }
 end
-
-# validates :message, :service_id, :status_id, :presence => true

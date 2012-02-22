@@ -27,12 +27,6 @@ describe Event do
         Event.count.should == 1
       end
       
-      it "updates day records upon save" do
-        event.save
-        recent_status = Day.where("service_id = #{event.service_id}").order("date DESC").first
-        recent_status.status_id.should == event.status_id
-      end
-      
     end
   end
   

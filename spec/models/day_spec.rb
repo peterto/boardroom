@@ -5,7 +5,7 @@ describe Day do
   it { should validate_presence_of (:status_id) }
   it { should validate_presence_of (:date) }
   
-  describe "new service" do    
+  describe "new service" do
     it "creates 6 records for a new service" do
       Fabricate(:service, :id => 1)
       records = Day.where("service_id = ?", 1)
@@ -22,4 +22,6 @@ describe Day do
     end
   end
   
+  # Test that another record is added with the most recent event after running the delayed job. Ex: count the number of records for the most recent day. Should equal 2 instead of 1.
+  # Test that the days table has the most recent event for each of the last 6 days. Do this using the notes in the day model.
 end

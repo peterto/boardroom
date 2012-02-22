@@ -21,5 +21,5 @@ describe Day do
       recent_record.status_id.should_not == 4
     end
   end
-
+  
 end

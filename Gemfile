@@ -17,4 +17,8 @@ group :test, :development do
   gem 'fabrication'
   gem 'shoulda-matchers'
   gem 'awesome_print'
+  gem 'spork'
+  gem 'guard-rspec'
+  gem 'guard-spork'
+  gem 'growl'
 end

@@ -26,6 +26,7 @@ describe Event do
         event.save.should be_true
         Event.count.should == 1
       end
+      
     end
   end
   

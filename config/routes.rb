@@ -1,6 +1,7 @@
 RubyStashboard::Application.routes.draw do
   resources :services
-
+  
+  root :to => "index#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

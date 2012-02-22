@@ -19,8 +19,8 @@ class Day < ActiveRecord::Base
     # For testing purposes
       # First, determine if this is the most recent event of that particular day    
       # Then, if it is, find the record of that particular day. If that record exists, update it with the event status
-    record = where("service_id = ?", event.service_id).order("date DESC").first.id
-    update(record, :status_id => event.status_id)
+    record = where("service_id = ?", event.service_id).order("date DESC").first
+    update(record.id, :status_id => event.status_id) unless record.nil?
   end
   
   # For delayed job

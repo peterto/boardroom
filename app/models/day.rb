@@ -16,7 +16,7 @@ class Day < ActiveRecord::Base
   
   # For status change
   def self.update_record_with(event)
-    # For testing purposes
+    # For testing purposes - use Rails.env.test? or Rails.env.development?
       # First, determine if this is the most recent event of that particular day    
       # Then, if it is, find the record of that particular day. If that record exists, update it with the event status
     record = where("service_id = ?", event.service_id).order("date DESC").first
@@ -40,6 +40,6 @@ class Day < ActiveRecord::Base
   end
   
   def self.get_all_statuses
-    joins(:service, :status).select("services.name, statuses.image").order("days.service_id ASC, days.date DESC").group_by { |row| row.name }
+    joins(:service, :status).select("services.name, services.id AS service_id, statuses.image").order("days.service_id ASC, days.date DESC").group_by { |row| row.name }
   end
 end

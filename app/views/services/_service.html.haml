@@ -1,0 +1,7 @@
+%tr
+  - @services.each do |service|
+    %tr
+      %td= service.name
+      %td{:class => "right"}= link_to "Edit", edit_services_path 
+      %td{:class => "right"}= link_to "Delete", destroy_services_path 
+      = render @days

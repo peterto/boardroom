@@ -12,6 +12,7 @@ class ServicesController < ApplicationController
   # GET /services
   def index
     @services = Service.all
+    @days = Day.all
   end
   
   # GET /services/new

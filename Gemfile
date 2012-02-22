@@ -21,4 +21,5 @@ group :test, :development do
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'growl'
+  gem 'bootstrap-sass', '~>2.0.0'
 end

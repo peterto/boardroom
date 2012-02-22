@@ -1,2 +1,19 @@
-%h1 Services#index
-%p Find me in app/views/services/index.html.haml
+!!!
+%body
+  %div{:class => "navbar navbar-fixed-top"}
+    %div{:class => "navbar-inner"}
+      %div{:class => "container"}
+        %a{:class => "brand"}= "Boardroom Admin"
+  %div{:class => "container"}
+    %h1{:class => "row"}
+      %h2{:class => "span2"}= link_to "Service", services_path
+      %h2{:class => "span2"}= link_to "Status", statuses_path
+      %h2{:class => "span2"}= link_to "Events", events_path
+      
+      %table{:class => "span12"}
+        
+        / %th{:class => "today"}= "Current"
+        / - for i in (1..6)
+        /         - t = i.day.ago
+        /           %th{:class => "today"}= "#{t.strftime("%m/%d")}"
+        = render @services

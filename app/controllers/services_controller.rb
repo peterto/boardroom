@@ -12,7 +12,6 @@ class ServicesController < ApplicationController
   # GET /services
   def index
     @services = Service.all
-    @days = Day.all
   end
   
   # GET /services/new
@@ -22,6 +21,7 @@ class ServicesController < ApplicationController
   
   # GET /service/:id
   def show
+    @service = Service.find(params[:id])
   end
   
   # GET /service/:id/edit
@@ -30,7 +30,7 @@ class ServicesController < ApplicationController
 
   # POST /services
   def create
-    @service = Service.new(params[:id])
+    @service = Service.new(params[:service])
     if @service.save
       redirect_to @service, notice: 'Service was successfully created'
     else

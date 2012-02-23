@@ -51,7 +51,7 @@ describe ServicesController do
     describe "with valid params" do
     
       it "creates a new service" do
-        post :create, :id => { :name => "New Service" }
+        post :create, :service => { :name => "New Service" }
         Service.count.should == 1
         Service.last.name.should == "New Service"
       end

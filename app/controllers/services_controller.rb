@@ -21,6 +21,7 @@ class ServicesController < ApplicationController
   
   # GET /service/:id
   def show
+    @service = Service.find(params[:id])
   end
   
   # GET /service/:id/edit

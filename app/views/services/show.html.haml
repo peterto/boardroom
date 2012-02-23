@@ -1,2 +1,22 @@
-%h1 Services#show
-%p Find me in app/views/services/show.html.haml
+= render 'header'
+%div{:class => "container well"}
+  %div{:class => "row"}
+    %div{:class => "span6"}
+      %h1= @service.name
+      - for i in (0..5)
+        - t = i.day
+
+        - @events = Event.where(:created_at => (Time.now - i.day)..(Time.now - i-1.day), :service_id => @service.id)
+        - @events.each do |event|
+          - if event.created_at.to_date == Time.now.to_date
+            - if event.service_id == @service.id
+              - if event.status == 1
+                %td{:class => "status highlight"}= link_to image_tag('tick-circle.png'), service_path(@service)
+              - elsif event.status == 2
+                %td{:class => "status highlight"}= link_to image_tag('exclamation.png'), service_path(@service)
+              - else
+                %td{:class => "status highlight"}= link_to image_tag('cross-circle.png'), service_path(@service)
+            - else
+              %td{:class => "status highlight"}= link_to image_tag('tick-circle.png'), service_path(@service)
+          - else
+            %td{:class => "status highlight"}= link_to image_tag('tick-circle.png'), service_path(@service)

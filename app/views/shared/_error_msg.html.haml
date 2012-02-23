@@ -1,0 +1,8 @@
+- if model.errors.any?
+  .error_explanation
+    %h3= "#{pluralize(model.errors.count, "error")} saving #{model.class}:"
+    %ul
+      - model.errors.full_messages.each do |msg|
+        %li= msg
+        
+

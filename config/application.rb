@@ -60,5 +60,10 @@ module RubyStashboard
       g.test_framework      :rspec, :fixture => true
       g.fixture_replacement :fabrication
     end
+    
+    # Configuring timezones to work properly
+    config.time_zone = 'Eastern Time (US & Canada)'
+    config.active_record.time_zone_aware_attributes = true
+    
   end
 end

@@ -1,0 +1,16 @@
+<div id="wrapper">
+	<header>
+    	<a href="/"><h1 id="title">Stashboard</h1></a>
+	</header>
+	
+	<section id="content">
+		<h2><%= "New Issue for #{@service.name}" %></h2>
+		
+		<%= simple_form_for @event, :url => service_events_path(@service) do |f| %>
+			<%= f.input :message %>
+			<%= f.association :status, :include_blank => false %>
+			<%= f.input :service_id, :as => :hidden, :input_html => { :value => @service.id } %>
+			<%= f.button :submit %>
+		<% end %>
+	</section>
+</div>

@@ -1,7 +1,8 @@
 RubyStashboard::Application.routes.draw do
-  resources :events
   resources :statuses
-  resources :services
+  resources :services do
+    resources :events
+  end
 
   root :to => "index#index"
 end

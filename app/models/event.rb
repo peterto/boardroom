@@ -6,6 +6,7 @@ class Event < ActiveRecord::Base
   belongs_to :status
 
   after_save :update_day_record
+  # Need to have a call back for after_delete. This will have to recalculate the day record which occurred on the same day of the deleted event (if that record is outside the range, then no need to worry) 
   
   private
   

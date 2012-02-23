@@ -16,7 +16,7 @@ class EventsController < ApplicationController
   end
   
   def create
-    @event = Event.new(params[:id])
+    @event = Event.new(params[:event])
     if @event.save
       redirect_to @event, notice: 'Event was successfully created'
     else

@@ -60,7 +60,7 @@ describe ServicesController do
     describe "with invalid params" do
       
       it "does not create a new service" do
-        post :create, :id => { :name => "" }
+        post :create, :service => { :name => "" }
         Service.count.should == 0
       end
     end

@@ -29,7 +29,7 @@ class ServicesController < ApplicationController
 
   # POST /services
   def create
-    @service = Service.new(params[:id])
+    @service = Service.new(params[:service])
     if @service.save
       redirect_to @service, notice: 'Service was successfully created'
     else

@@ -1,0 +1,6 @@
+= simple_form_for(@event, :url => service_events_path(@service)) do |f|
+  = render 'shared/error_msg', model: @event
+  = f.input :message, :input_html => {:class => "span6"}
+  = f.association :status, :include_blank => false, :input_html => {:class => "span6"}
+  = f.input :service_id, :as => :hidden, :input_html => { :value => @service.id }
+  = f.button :submit, :class => "btn-primary"

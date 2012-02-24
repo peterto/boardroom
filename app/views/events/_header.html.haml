@@ -6,7 +6,7 @@
         %a{:class => "brand"}= "Boardroom Admin"
   %div{:class => "container well"}
     %h1{:class => "row"}
-      %h2{:class => "span2"}= link_to "Service", services_path
+      %h2{:class => "span2"}= link_to "All Events", service_events_path(@service)
       / %h2{:class => "span2"}= link_to "Status", statuses_path
       / %h2{:class => "span2"}= link_to "Events", events_path
-      %h2{:class => "right"}= link_to "New Service", new_service_path
+      %h2{:class => "right"}= link_to "New Event", new_service_event_path

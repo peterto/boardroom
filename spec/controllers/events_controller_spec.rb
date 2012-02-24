@@ -2,17 +2,8 @@ require 'spec_helper'
 
 describe EventsController do
 
-  # let(:event) { Event.new }
-  
   describe 'index' do
-    
-    # before(:each) do
-    #   event.message = 'Test Message'
-    #   event.service_id = 1
-    #   event.status_id = 1
-    #   event.save
-    # end
-    
+
     before(:each) do
       @event = Fabricate(:event)
     end
@@ -49,13 +40,7 @@ describe EventsController do
   end
   
   describe 'show' do
-    # before(:each) do
-    #   event.message = 'Test Message'
-    #   event.service_id = 1
-    #   event.status_id = 1
-    #   event.save
-    # end
-    
+
     before(:each) do
       @event = Fabricate(:event)
     end
@@ -81,7 +66,7 @@ describe EventsController do
     
   end
   
-  describe 'Update event' do
+  describe 'update' do
     
     before(:each) do
       @event = Fabricate(:event)

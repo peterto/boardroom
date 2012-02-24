@@ -1,6 +1,16 @@
 class EventsController < ApplicationController
+  before_filter :get_service
+  
+  def get_service
+    begin
+      @service = Service.find(params[:service_id])
+    rescue ActiveRecord::RecordNotFound
+      render file: "public/404.html", status: 404
+    end
+  end
+  
   def index
-    @events = Event.all
+    @events = @service.get_all_statuses
   end
   
   def new
@@ -18,7 +28,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(params[:event])
     if @event.save
-      redirect_to @event, notice: 'Event was successfully created'
+      redirect_to service_events_path(@service), notice: 'Event was successfully created'
     else
       render action: 'new'
     end

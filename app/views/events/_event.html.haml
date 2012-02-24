@@ -1,1 +1,7 @@
-- @events = Event.where(:service_id => service.id)
+%tbody
+  - @events.each do |event|
+    %tr
+      %td= time_ago_in_words(event.created_at)
+      %td= event.image
+      %td= event.message
+      %td= link_to "Delete", event, :confirm => "Are you sure?", :method => :delete 

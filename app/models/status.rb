@@ -4,5 +4,6 @@ class Status < ActiveRecord::Base
   validates :image, :presence => true
   
   has_many :events
+  has_many :services, :through => :events
   has_many :days
 end

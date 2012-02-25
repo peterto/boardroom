@@ -1,0 +1,4 @@
+= render 'header'
+%div{:class => 'container well'}
+  %content= "New Issue for #{@service.name}"
+  = render 'form'

@@ -8,6 +8,7 @@ describe EventsController do
     4.times do |i|
       Fabricate(:status, :id => i)
     end
+    login_user
   end
   
   describe 'index' do

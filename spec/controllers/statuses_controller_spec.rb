@@ -1,7 +1,11 @@
 require 'spec_helper'
 
 describe StatusesController do
-
+  
+  before(:each) do
+    login_user
+  end
+  
   describe 'index' do
     
     before(:each) do

@@ -51,7 +51,7 @@ describe EventsController do
     context 'with valid message, service_id, and status_id' do
       it 'should create a new event' do
         post :create, :event => { :message => 'New Event', :service_id => '1', :status_id => '1' }, :service_id => 1
-        Event.count.should == 2
+        Event.count.should == 1
         Event.last.message.should == 'New Event'
       end
     end

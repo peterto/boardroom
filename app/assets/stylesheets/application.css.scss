@@ -5,27 +5,73 @@
 
 @import "bootstrap";
 
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {
+	display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+ 
+* html .clearfix {
+	height: 1%;
+}
+
 body {
   padding-top: 60px;
   padding-bottom: 40px;
-}
-
-#day_records {
-  font-size: 15px;
-}
-
-#day_records th, #day_records td {
-  text-align: center;
-}
-
-#day_records th.today {
-  background: rgb(228, 228, 228);
-}
-
-#day_records td.highlight {
   background: rgb(247, 247, 247);
 }
 
-#day_records th:first-child, #day_records tr td:first-child {
-  text-align: left;
+#content {
+  border: 1px solid rgb(228, 228, 228);
+  background: white;
+  padding: 20px;
+  table {
+    font-size: 15px;
+    border-top: none;
+    border-left: none;
+    th, td {
+      text-align: center;
+    }
+    th.today {
+      background: rgb(228, 228, 228);
+    }
+    td.highlight {
+      background: rgb(247, 247, 247);
+    }
+    th:first-child, tr td:first-child {
+      text-align: left;
+    }
+  }
+}
+
+#legend {
+  h4 {
+    font-weight: normal;
+    color: grey;
+    margin-bottom: 10px;
+  }
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style:none;
+    li {
+      float: left;
+      margin-right: 20px;
+    }
+  }
+  p {
+    vertical-align: middle; 
+    display: inline-block;
+  }
 }

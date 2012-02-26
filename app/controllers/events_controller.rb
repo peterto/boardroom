@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_filter :get_service
-  before_filter :authenticate_admin!
+  before_filter :authenticate_admin!, :except => :show
+  
   def get_service
     begin
       @service = Service.find(params[:service_id])

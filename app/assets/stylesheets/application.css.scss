@@ -4,3 +4,28 @@
 */
 
 @import "bootstrap";
+
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+
+#day_records {
+  font-size: 15px;
+}
+
+#day_records th, #day_records td {
+  text-align: center;
+}
+
+#day_records th.today {
+  background: rgb(228, 228, 228);
+}
+
+#day_records td.highlight {
+  background: rgb(247, 247, 247);
+}
+
+#day_records th:first-child, #day_records tr td:first-child {
+  text-align: left;
+}

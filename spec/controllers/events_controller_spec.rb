@@ -8,6 +8,7 @@ describe EventsController do
     4.times do |i|
       Fabricate(:status, :id => i)
     end
+    login_user
   end
   
   describe 'index' do
@@ -43,7 +44,7 @@ describe EventsController do
   describe 'create' do
     context 'with valid message, service_id, and status_id' do
       it 'should create a new event' do
-        post :create, :service_id => 1, :event => { :message => 'New Event', :service_id => 1, :status_id => 1 }
+        post :create, :service_id => @service, :event => { :message => 'New Event', :service_id => @service, :status_id => 1 }
         Event.count.should == 2
         Event.last.message.should == 'New Event'
       end
@@ -52,7 +53,7 @@ describe EventsController do
   
   describe 'destroy' do
     it 'should destroy an event' do
-      delete :destroy, :id => @event
+      delete :destroy, :service_id => @service, :id => @event
       Event.count.should == 0
     end
   end

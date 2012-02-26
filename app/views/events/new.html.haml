@@ -1,2 +1,4 @@
-%h1 Events#new
-%p Find me in app/views/events/new.html.haml
+= render 'header'
+%div{:class => 'container well'}
+  %content= "New Issue for #{@service.name}"
+  = render 'form'

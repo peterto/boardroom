@@ -1,0 +1,7 @@
+%tbody
+  - @services.each do |service|
+    %tr
+      %td= service.name
+      %td= link_to "Show", service
+      %td= link_to "Edit", edit_service_path(service) 
+      %td= link_to "Delete", service, :confirm => "Are you sure?", :method => :delete 

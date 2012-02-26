@@ -2,10 +2,15 @@ require 'spec_helper'
 
 describe ServicesController do
   
+  before(:each) do
+    login_user
+  end
+
   describe "GET index" do
     
     before(:each) do
       @service = Fabricate(:service)
+
     end
     
     it "assigns all services to @services" do
@@ -54,13 +59,13 @@ describe ServicesController do
         post :create, :service => { :name => "New Service" }
         Service.count.should == 1
         Service.last.name.should == "New Service"
+        response.should redirect_to(services_url)
       end
     end
     
     describe "with invalid params" do
-      
       it "does not create a new service" do
-        post :create, :id => { :name => "" }
+        post :create, :service => { :name => "" }
         Service.count.should == 0
       end
     end
@@ -81,7 +86,6 @@ describe ServicesController do
     end
     
     describe "with invalid params" do
-      
       it "does not update the service" do
         old_name = @service.name
         put :update, :id => @service, :service => { :name => '' }

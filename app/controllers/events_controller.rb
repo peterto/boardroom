@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_filter :get_service
-  
+  before_filter :authenticate_admin!
   def get_service
     begin
       @service = Service.find(params[:service_id])
@@ -18,10 +18,6 @@ class EventsController < ApplicationController
   end
   
   def show
-    @event = Event.find(params[:id])
-  end
-  
-  def edit
     @event = Event.find(params[:id])
   end
   
@@ -46,6 +42,6 @@ class EventsController < ApplicationController
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
-    redirect_to events_url
+    redirect_to service_events_path(@service)
   end
 end

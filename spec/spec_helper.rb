@@ -1,5 +1,14 @@
 require 'rubygems'
 require 'spork'
+
+module MySpecHelper
+def login_user
+  @request.env["devise.mapping"]   = Devise.mappings[:user]
+   user = Fabricate(:admin)
+   sign_in user
+ end
+end
+include MySpecHelper
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
@@ -30,6 +39,10 @@ Spork.prefork do
     # instead of true.
     config.use_transactional_fixtures = true
 
+
+    #Devise helpers
+    config.include Devise::TestHelpers, :type => :controller
+    
     # If true, the base class of anonymous controllers will be inferred
     # automatically. This will be the default behavior in future versions of
     # rspec-rails.

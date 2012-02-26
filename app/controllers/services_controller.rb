@@ -1,6 +1,6 @@
 class ServicesController < ApplicationController
   before_filter :get_service, :only => [:show, :edit, :update, :destroy]
-  
+  before_filter :authenticate_admin!
   def get_service
     begin
       @service = Service.find(params[:id])
@@ -21,6 +21,7 @@ class ServicesController < ApplicationController
   
   # GET /service/:id
   def show
+    @service = Service.find(params[:id])
   end
   
   # GET /service/:id/edit
@@ -31,7 +32,7 @@ class ServicesController < ApplicationController
   def create
     @service = Service.new(params[:service])
     if @service.save
-      redirect_to @service, notice: 'Service was successfully created'
+      redirect_to services_path, notice: 'Service was successfully created'
     else
       render action: 'new'
     end

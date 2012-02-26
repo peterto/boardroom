@@ -5,6 +5,5 @@
 Status.create(:name => 'up', :image => 'up.jpg')
 Status.create(:name => 'down', :image => 'down.jpg')
 Status.create(:name => 'warning', :image => 'warning.jpg')
-Status.create(:name => 'default', :image => 'default.jpg')
 
 Service.create(:name => 'hello', :description => 'hello world!')

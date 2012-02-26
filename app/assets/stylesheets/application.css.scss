@@ -5,6 +5,7 @@
 
 @import "bootstrap";
 
+/* General Styles */
 .clearfix:after {
 	content: ".";
 	display: block;
@@ -32,6 +33,13 @@ body {
   background: rgb(247, 247, 247);
 }
 
+ul {
+  padding: 0;
+  margin: 0;
+  list-style:none;
+}
+
+/* Root Styles */
 #content {
   border: 1px solid rgb(228, 228, 228);
   background: white;
@@ -62,9 +70,6 @@ body {
     margin-bottom: 10px;
   }
   ul {
-    padding: 0;
-    margin: 0;
-    list-style:none;
     li {
       float: left;
       margin-right: 20px;
@@ -75,3 +80,28 @@ body {
     display: inline-block;
   }
 }
+
+/* Service Styles */
+/* utilizes content style of root */
+ul.services {
+  li {
+    display: block;
+    position: relative;
+    padding: 5px;
+    border-bottom: 1px solid #CCC;
+    a.name {
+      font-size: 18px;
+      position: absolute;
+      left: 5px;
+      bottom: 5px;
+    }
+    a.btn {
+      float:right;
+      margin-left: 20px;
+    }
+  }
+}
+
+
+
+

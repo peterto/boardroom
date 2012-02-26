@@ -1,0 +1,19 @@
+<section id="services_header">
+  <ul class="nav nav-pills">
+    <li class="active"><a href="#">Services</a></li>
+    <li><a href="#">Statuses</a></li>
+  </ul>
+</section>
+<section id="content">
+  <h2>Services</h2>
+  <ul class="services">
+    <% @services.each do |service| %>
+    <li class="clearfix">
+      <%= link_to service.name, service_events_path(service), {:class => 'name'} %>
+      <%= link_to 'Delete', service_path(service),
+                  :confirm => 'Are you sure?', :method => :delete, :class => 'btn' %>
+      <%= link_to 'Edit', edit_service_path(service), :class => 'btn' %>
+    </li>
+    <% end %>
+  </ul>
+</section>

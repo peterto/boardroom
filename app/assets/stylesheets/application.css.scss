@@ -16,13 +16,13 @@
 }
  
 .clearfix {
-	display: inline-block;
+	display: block;
 }
  
 html[xmlns] .clearfix {
 	display: block;
 }
- 
+
 * html .clearfix {
 	height: 1%;
 }
@@ -39,6 +39,17 @@ ul {
   list-style:none;
 }
 
+form {
+  margin-top: 15px;
+  input[type=submit] {
+    margin-top: 15px;
+  }
+  div {
+    margin-bottom: 10px;
+  }
+}
+
+
 /* Root Styles */
 #content {
   border: 1px solid rgb(228, 228, 228);
@@ -51,13 +62,13 @@ ul {
     th, td {
       text-align: center;
     }
-    th.today {
+    th.highlight {
       background: rgb(228, 228, 228);
     }
     td.highlight {
       background: rgb(247, 247, 247);
     }
-    th:first-child, tr td:first-child {
+    th.left, td.left {
       text-align: left;
     }
   }
@@ -84,6 +95,7 @@ ul {
 /* Service Styles */
 /* utilizes content style of root */
 ul.services {
+  margin-bottom: 15px;
   li {
     display: block;
     position: relative;
@@ -102,6 +114,29 @@ ul.services {
   }
 }
 
+#service_events_header {
+  margin-bottom: 15px;
+  .title {
+    float: left;
+  }
+  .options {
+    a {
+      float: right;
+      margin-left: 10px;
+      margin-top: 15px;
+    }
+  }
+}
 
-
-
+.allgood {
+  border: 1px solid #86c440;
+  background: #daf1b8;
+  padding: 40px;
+  text-align: center;
+  margin-top: 10px;
+  img, p {
+    display: inline-block;
+    vertical-align: middle;  
+    font-size: 20px;
+  }
+}

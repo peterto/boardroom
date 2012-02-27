@@ -1,8 +1,8 @@
 <section id="content">
   <table class="table table-bordered">
   	<thead>
-  		<th><h3>Service</h3></th>
-  		<th class="today"><h3>Current</h3></th>
+  		<th class="left"><h3>Service</h3></th>
+  		<th class="highlight"><h3>Current</h3></th>
   		<% 5.times do |i| %>
   			<th><h3><%= (Time.now - 60*60*24*(i+1)).to_formatted_s(:month_and_day) %></h3></th>
   		<% end %>
@@ -11,13 +11,13 @@
   		<% unless @statuses.nil?
   			@statuses.keys.each do |name| %>
   		<tr>
-  			<td><%= link_to name, service_events_path(@statuses[name][0].service_id) %></td>
+  			<td class="left"><%= link_to name, service_events_path(@statuses[name][0].service_id) %></td>
   			<td class="highlight">
 					<%= link_to image_tag(@statuses[name][0].image, {:class => 'sym', :alt => ''}), service_events_path(@statuses[name][0].service_id) %>
   			</td>
   			<% 5.times do |i| %>
   				<td>
-						<%= image_tag(@statuses[name][0].image, {:class => 'sym', :alt => ''}) %>
+						<%= image_tag(@statuses[name][i+1].image, {:class => 'sym', :alt => ''}) %>
           </td>
   			<% end %>
   		</tr>

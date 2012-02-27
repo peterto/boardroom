@@ -54,7 +54,7 @@ describe StatusesController do
     context 'with valid name, service_id, and status_id' do
     
       it 'should create a new status' do
-        post :create, :id => { :name => 'New Status', :image => 'New Status image'}
+        post :create, :status => { :name => 'New Status', :image => 'New Status image', :description => 'New Description'}
         Status.count.should == 1
         Status.last.name.should == 'New Status'
         Status.last.image.should == 'New Status image'

@@ -17,7 +17,7 @@ class StatusesController < ApplicationController
   end
   
   def create
-    @status = Status.new(params[:id])
+    @status = Status.new(params[:status])
     if @status.save
       redirect_to @status, notice: 'Status was successfully created'
     else

@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Status do
   it { should validate_presence_of (:name) }
   it { should validate_presence_of (:image) }
+  it { should validate_presence_of (:description) }
   
   describe "new" do
     let(:status) { Status.new }
@@ -23,6 +24,7 @@ describe Status do
       before(:each) do
         status.name = 'New Status'
         status.image = 'service-up.jpg'
+        status.description = 'Description'
       end
         
       it "is valid" do

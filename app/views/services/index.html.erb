@@ -2,7 +2,7 @@
 
 <section id="content">
   <h2>Services</h2>
-  <ul class="services">
+  <ul class="list_all">
     <% @services.each do |service| %>
     <li class="clearfix">
       <%= link_to service.name, service_events_path(service), {:class => 'name'} %>

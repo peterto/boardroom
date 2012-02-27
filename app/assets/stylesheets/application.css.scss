@@ -61,6 +61,7 @@ form {
     border-left: none;
     th, td {
       text-align: center;
+      vertical-align: middle;
     }
     th.highlight {
       background: rgb(228, 228, 228);
@@ -87,21 +88,20 @@ form {
     }
   }
   p {
-    vertical-align: middle; 
+    vertical-align: middle;
     display: inline-block;
   }
 }
 
-/* Service Styles */
-/* utilizes content style of root */
-ul.services {
+/* Service and Status Styles */
+ul.list_all {
   margin-bottom: 15px;
   li {
     display: block;
     position: relative;
     padding: 5px;
     border-bottom: 1px solid #CCC;
-    a.name {
+    .name {
       font-size: 18px;
       position: absolute;
       left: 5px;

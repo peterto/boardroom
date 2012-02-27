@@ -1,0 +1,7 @@
+<%= simple_form_for(@status, :html => { :class => "form-horizontal" }) do |f| %>
+<%= render 'shared/error_msg', model: @status %>
+<%= f.input :name, :input_html => { :class => "span4" } %>
+<%= f.input :image, :input_html => { :class => "span4" } %>
+<%= f.input :description, :as => 'text', :input_html => { :class => "span4" } %>
+<%= f.button :submit, :class => "btn" %>
+<% end %>

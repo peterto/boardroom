@@ -10,7 +10,7 @@ class Day < ActiveRecord::Base
     # Insert six rows into the table for this service with status id of 4
     6.times do |i|
       date = Date.today - i
-      create(:service_id => service.id, :status_id => 4, :date => date)
+      create(:service_id => service.id, :status_id => 1, :date => date)
     end
   end
   

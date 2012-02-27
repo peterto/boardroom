@@ -1,0 +1,17 @@
+<%= render 'shared/admin_header' %>
+
+<section id="content">
+  <h2>Statuses</h2>
+  <ul class="list_all">
+    <% @statuses.each do |status| %>
+    <li class="clearfix">
+      <span class="name"><%= status.name %></span>
+      <%= link_to 'Delete', status_path(status),
+                  :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-danger' %>
+      <%= link_to 'Edit', edit_status_path(status), :class => 'btn' %>
+    </li>
+    <% end %>
+  </ul>
+
+  <%= link_to 'Create a Status', new_status_path, :class => 'btn' %>
+</section>

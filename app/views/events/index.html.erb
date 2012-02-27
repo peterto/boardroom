@@ -1,0 +1,44 @@
+<%= render 'shared/admin_header' %>
+
+<section id="content">
+  <section id="service_events_header" class="clearfix">
+    <section class="title">  
+      <h2><%= @service.name %></h2>
+      <p><%= @service.description %></p>
+    </section>
+    <section class="options">
+      <%= link_to 'Delete Service', service_path(@service), :confirm => 'Are you sure you want to delete this service?', :method => :delete, :class => 'btn' %>
+      <%= link_to 'Edit Service', edit_service_path(@service), :class => 'btn' %>
+      <%= link_to 'Update Status', new_service_event_path(@service), {:class => 'btn btn-primary'} %>
+    </section>
+  </section>
+  
+  <section id="service_events_data">
+    <% if @events.empty? %>
+    <section class="allgood">
+      <%= image_tag 'big_up.jpg' %>
+      <p>No strange events, this service is up and running smoothly.</p>
+    </section>
+	  <% else %>
+    <table class="table table-bordered">
+    	<thead>
+    		<th class="highlight"><h4>Date (GMT)</h4></th>
+    		<th class="highlight"><h4>Status</h4></th>
+  			<th class="highlight"><h4>Message</h4></th>
+  			<th class="highlight"></th>
+    	</thead>
+    	<tbody>
+    	  <% @events.each do |event| %>
+      	  <tr>
+      	   <td><%= time_ago_in_words(event.created_at) %> ago</td>
+      	   <td class="highlight"><%= image_tag event.image %></td>
+      	   <td><%= event.message %></td>
+      	   <td><a href="" class="btn btn-danger">Delete</a></td>
+      	  </tr>
+    	  <% end
+        end %>
+    	</tbody>
+    </table>
+  </section>
+  
+</section>

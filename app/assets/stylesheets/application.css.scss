@@ -4,3 +4,139 @@
 */
 
 @import "bootstrap";
+
+/* General Styles */
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {
+	display: block;
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+
+* html .clearfix {
+	height: 1%;
+}
+
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+  background: rgb(247, 247, 247);
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style:none;
+}
+
+form {
+  margin-top: 15px;
+  input[type=submit] {
+    margin-top: 15px;
+  }
+  div {
+    margin-bottom: 10px;
+  }
+}
+
+
+/* Root Styles */
+#content {
+  border: 1px solid rgb(228, 228, 228);
+  background: white;
+  padding: 20px;
+  table {
+    font-size: 15px;
+    border-top: none;
+    border-left: none;
+    th, td {
+      text-align: center;
+      vertical-align: middle;
+    }
+    th.highlight {
+      background: rgb(228, 228, 228);
+    }
+    td.highlight {
+      background: rgb(247, 247, 247);
+    }
+    th.left, td.left {
+      text-align: left;
+    }
+  }
+}
+
+#legend {
+  h4 {
+    font-weight: normal;
+    color: grey;
+    margin-bottom: 10px;
+  }
+  ul {
+    li {
+      float: left;
+      margin-right: 20px;
+    }
+  }
+  p {
+    vertical-align: middle;
+    display: inline-block;
+  }
+}
+
+/* Service and Status Styles */
+ul.list_all {
+  margin-bottom: 15px;
+  li {
+    display: block;
+    position: relative;
+    padding: 5px;
+    border-bottom: 1px solid #CCC;
+    .name {
+      font-size: 18px;
+      position: absolute;
+      left: 5px;
+      bottom: 5px;
+    }
+    a.btn {
+      float:right;
+      margin-left: 20px;
+    }
+  }
+}
+
+#service_events_header {
+  margin-bottom: 15px;
+  .title {
+    float: left;
+  }
+  .options {
+    a {
+      float: right;
+      margin-left: 10px;
+      margin-top: 15px;
+    }
+  }
+}
+
+.allgood {
+  border: 1px solid #86c440;
+  background: #daf1b8;
+  padding: 40px;
+  text-align: center;
+  margin-top: 10px;
+  img, p {
+    display: inline-block;
+    vertical-align: middle;  
+    font-size: 20px;
+  }
+}

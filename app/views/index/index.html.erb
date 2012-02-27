@@ -1,36 +1,40 @@
-<div id="wrapper">
-	<header>
-    	<a href="/"><h1 id="title">Stashboard</h1></a>
-	</header>
-	<section id="content">
-
-		<table id="services" class="data">
-			<thead>
-				<th>Service</th>
-				<th class="today">Current</th>
-				<% 5.times do |i| %>
-					<th><%= (Time.now - 60*60*24*(i+1)).to_formatted_s(:month_and_day) %></th>
-				<% end %>
-			</thead>
-			
-			<tbody>
-				<% unless @statuses.nil?
-					@statuses.keys.each do |name| %>
-				<tr>
-					<td><%= link_to name, service_events_path(@statuses[name][0].service_id) %></td>
-					<td class="status highlight">
-						<%= @statuses[name][0].image %>
-					</td>
-					<% 5.times do |i| %>
-						<td class="status">
-							<%= @statuses[name][i+1].image %>
-						</td>
-					<% end %>
-				</tr>
-				<% end
-				end %>
-			</tbody>
-		</table>
-		
-	</section>
-</div>
+<section id="content">
+  <table class="table table-bordered">
+  	<thead>
+  		<th class="left"><h3>Service</h3></th>
+  		<th class="highlight"><h3>Current</h3></th>
+  		<% 5.times do |i| %>
+  			<th><h3><%= (Time.now - 60*60*24*(i+1)).to_formatted_s(:month_and_day) %></h3></th>
+  		<% end %>
+  	</thead>
+  	<tbody>
+  		<% unless @statuses.nil?
+  			@statuses.keys.each do |name| %>
+  		<tr>
+  			<td class="left"><%= link_to name, service_events_path(@statuses[name][0].service_id) %></td>
+  			<td class="highlight">
+					<%= link_to image_tag(@statuses[name][0].image, {:class => 'sym', :alt => ''}), service_events_path(@statuses[name][0].service_id) %>
+  			</td>
+  			<% 5.times do |i| %>
+  				<td>
+						<%= image_tag(@statuses[name][i+1].image, {:class => 'sym', :alt => ''}) %>
+          </td>
+  			<% end %>
+  		</tr>
+  		<% end
+  		end %>
+  	</tbody>
+  </table>
+  
+  <div id="legend">
+    <h4>Status Legend</h4>
+    <ul class="clearfix">
+      <% @legend_statuses.each do |status| %>
+      <li>
+        <%= image_tag(status.image) %>
+        <p><%= status.name %></p>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</section>

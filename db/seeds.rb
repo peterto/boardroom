@@ -2,9 +2,8 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
 # Seed with Statuses and a Service
-Status.create(:name => 'up', :image => 'up.jpg')
-Status.create(:name => 'down', :image => 'down.jpg')
-Status.create(:name => 'warning', :image => 'warning.jpg')
-Status.create(:name => 'default', :image => 'default.jpg')
+Status.create(:name => 'Up', :image => 'up.jpg')
+Status.create(:name => 'Down', :image => 'down.jpg')
+Status.create(:name => 'Warning', :image => 'warning.jpg')
 
-Service.create(:name => 'hello', :description => 'hello world!')
+Service.create(:name => 'Shaan Service', :description => 'This is my service yo!')

@@ -21,15 +21,27 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
   end
+ 
+ 
+ 
   
   def create
     @event = Event.new(params[:event])
-    if @event.save
-      redirect_to service_events_path(@service), notice: 'Event was successfully created'
-    else
-      render action: 'new'
+    respond_to do |format|
+      format.html {
+        if @event.save
+          redirect_to service_events_path(@event), notice: 'Event was successfully created'
+        else
+          render action: 'new'
+        end }
+      format.json {
+        if @event.save 
+          render :json => @event 
+        else
+          render :json => @event.errors  
+        end }
+      end
     end
-  end
   
   def update
     @event = Event.find(params[:id])

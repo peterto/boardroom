@@ -12,6 +12,12 @@ class ServicesController < ApplicationController
   # GET /services
   def index
     @services = Service.all
+    respond_to do |format|
+      format.html
+      format.json { 
+        @services = @services.collect(&:name)
+        render :json => @services  }
+    end
   end
   
   # GET /services/new
@@ -31,10 +37,14 @@ class ServicesController < ApplicationController
   # POST /services
   def create
     @service = Service.new(params[:service])
-    if @service.save
-      redirect_to services_path, notice: 'Service was successfully created'
-    else
-      render action: 'new'
+    respond_to do |format|
+      format.html {
+        if @service.save
+          redirect_to services_path, notice: 'Service was successfully created'
+        else
+          render action: 'new'
+        end } 
+      format.json  if @service.save { render :json => @service }  
     end
   end
 

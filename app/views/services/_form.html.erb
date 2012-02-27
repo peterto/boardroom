@@ -1,0 +1,6 @@
+<%= simple_form_for(@service, :html => { :id => "new_service", :class => "form-horizontal" }) do |f| %>
+<%= render 'shared/error_msg', model: @service %>
+<%= f.input :name, :input_html => { :class => "span4" } %>
+<%= f.input :description, :input_html => { :class => "span4", :rows => 5 }, :as => :text %>
+<%= f.button :submit, :class => "btn" %>
+<% end %>

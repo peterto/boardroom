@@ -19,12 +19,8 @@
       <%= link_to 'Boardroom', root_path, {:class => 'brand'} %>
       <div class="nav-collapse">
         <ul class="nav">
-          <%= nav_link 'Home', root_path %>
-          <% unless current_page?(root_path) || current_page?(service_events_path) %>
-            <li class="active"><%= link_to 'Admin', services_path %></li>
-          <% else %>
-            <li><%= link_to 'Admin', services_path %></li>
-          <% end %>
+          <%= header_nav_link 'Home', root_path %>
+          <%= header_nav_link 'Admin', services_path %>
         </ul>
       </div><!--/.nav-collapse -->
     </div>

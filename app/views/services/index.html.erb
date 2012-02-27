@@ -1,20 +1,17 @@
-<section id="admin_header">
-  <ul class="nav nav-pills">
-    <%= nav_link 'Services', services_path %>
-    <%= nav_link 'Statuses', statuses_path %>
-  </ul>
-</section>
+<%= render 'shared/admin_header' %>
 
 <section id="content">
   <h2>Services</h2>
-  <ul class="services">
+  <ul class="list_all">
     <% @services.each do |service| %>
     <li class="clearfix">
       <%= link_to service.name, service_events_path(service), {:class => 'name'} %>
       <%= link_to 'Delete', service_path(service),
-                  :confirm => 'Are you sure?', :method => :delete, :class => 'btn' %>
+                  :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-danger' %>
       <%= link_to 'Edit', edit_service_path(service), :class => 'btn' %>
     </li>
     <% end %>
   </ul>
+
+  <%= link_to 'Create a Service', new_service_path, :class => 'btn' %>
 </section>

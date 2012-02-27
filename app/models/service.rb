@@ -1,7 +1,7 @@
 class Service < ActiveRecord::Base
   validates :name, :uniqueness => true, :presence => true
   
-  has_many :events
+  has_many :events, :dependent => :destroy
   has_many :statuses, :through => :events
   has_many :days
   

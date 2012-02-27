@@ -44,8 +44,11 @@ form {
   input[type=submit] {
     margin-top: 15px;
   }
-  div {
-    margin-bottom: 10px;
+  div, section {
+    margin-bottom: 25px;
+  }
+  input[type=radio] {
+    margin-left: 15px;
   }
 }
 

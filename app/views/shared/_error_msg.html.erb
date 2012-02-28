@@ -1,0 +1,10 @@
+<% if model.errors.any? %>
+<div class="error_explanation">
+  <h3><%= "#{pluralize(model.errors.count, "error")} saving #{model.class}:" %>
+    <ul>
+      <% model.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </h3>
+</div>

@@ -1,7 +1,12 @@
 class StatusesController < ApplicationController
- before_filter :authenticate_admin!
-  def index
+  before_filter :authenticate_admin!
+  before_filter :get_all_statuses, :only => [:index, :new, :edit]
+  
+  def get_all_statuses 
     @statuses = Status.all
+  end
+  
+  def index
   end
   
   def new

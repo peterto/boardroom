@@ -27,18 +27,6 @@ describe ServicesController do
     end
   end
   
-  describe "GET show" do
-    
-    before(:each) do
-      @service = Fabricate(:service)
-    end
-    
-    it "assigns the requested service to @service" do
-      get :show, :id => @service.id.to_s
-      assigns(:service).id.should == @service.id
-    end
-  end
-  
   describe "GET edit" do
     
     before(:each) do

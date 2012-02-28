@@ -34,13 +34,6 @@ describe EventsController do
     end
   end
   
-  describe 'show' do    
-    it 'assigns the requested event to @event' do
-      get :show, :service_id => @service.id, :id => @event.id
-      assigns(:event).should == @event
-    end
-  end
-  
   describe 'create' do
     context 'with valid message, service_id, and status_id' do
       it 'should create a new event' do

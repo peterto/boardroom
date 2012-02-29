@@ -15,7 +15,7 @@ class ServicesController < ApplicationController
     respond_to do |format|
       format.html
       format.json { 
-        @services = @services.collect(&:name)
+       # @services = @services.collect(&:name)
         render :json => @services  }
     end
   end
@@ -28,6 +28,10 @@ class ServicesController < ApplicationController
   # GET /service/:id
   def show
     @service = Service.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render :json => @service }
+    end
   end
   
   # GET /service/:id/edit
@@ -50,16 +54,24 @@ class ServicesController < ApplicationController
 
   # PUT /service/:id/
   def update
-    if @service.update_attributes(params[:service])
-      redirect_to @service, notice: 'Service was succesfully updated'
-    else
-      render action: 'edit'
-    end
+    respond_to do |format|
+      format.html {
+        if @service.update_attributes(params[:service])
+         redirect_to @service, notice: 'Service was succesfully updated'
+        else
+           render action: 'edit' 
+        end  }
+      format.json  if @service.update_attributes(params[:service]) { render :json => @service } 
+    end         
   end
   
   # DELETE /service/:id
   def destroy
-    @service.destroy
-    redirect_to services_url
+    respond_to do |format|
+      format.html { 
+        @service.destroy
+        redirect_to services_url }
+      format.json { render :json => @service }
+    end
   end
 end

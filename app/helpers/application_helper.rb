@@ -3,9 +3,9 @@ module ApplicationHelper
   def header_nav_link(link_text, link_path)
     case link_path
     when root_path
-      class_name = current_page?(root_path) ? 'active' : ''
+      class_name = params[:controller] == 'index' ? 'active' : ''
     when services_path
-      class_name = current_page?(root_path) ? '' : 'active'
+      class_name = params[:controller] == 'index' ? '' : 'active'
     end
   
     content_tag(:li, :class => class_name) do

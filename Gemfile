@@ -24,4 +24,8 @@ group :test, :development do
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'growl'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'ffaker'
 end

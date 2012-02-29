@@ -11,6 +11,17 @@ class Service < ActiveRecord::Base
     statuses.select("events.id, events.message, events.created_at, statuses.image").order("events.created_at DESC")
   end
   
+  def self.get_events
+    service_events = {}
+    Service.all.each do |service|
+      service_events[service.name] = service.events.last
+    end
+    service_events
+  end
+  
+      
+  
+  
   private
   
   def add_days_records

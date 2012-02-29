@@ -5,7 +5,9 @@ class IndexController < ApplicationController
     @legend_statuses = Status.all
     respond_to do |format|
       format.html
-      format.json { render :json => @statuses }
+      format.json {
+        @statuses = Service.get_events
+        render :json => @statuses }
     end
   end
   

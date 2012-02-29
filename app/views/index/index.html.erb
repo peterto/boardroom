@@ -11,7 +11,7 @@
   		<% unless @statuses.nil?
   			@statuses.keys.each do |name| %>
   		<tr>
-  			<td class="left"><%= link_to name, service_events_path(@statuses[name][0].service_id) %></td>
+  			<td class="left"><%= link_to name, CGI::escape(name) %></td>
   			<td class="highlight">
 					<%= link_to image_tag(@statuses[name][0].image, {:class => 'sym', :alt => ''}), service_events_path(@statuses[name][0].service_id) %>
   			</td>

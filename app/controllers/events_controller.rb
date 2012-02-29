@@ -22,8 +22,6 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
  
- 
- 
   
   def create
     @event = Event.new(params[:event])
@@ -33,15 +31,17 @@ class EventsController < ApplicationController
           redirect_to service_events_path(@service), notice: 'Event was successfully created'
         else
           render action: 'new'
-        end }
+        end 
+      }
       format.json {
         if @event.save 
           render :json => @event 
         else
           render :json => @event.errors  
-        end }
-      end
+        end 
+      }
     end
+  end
   
   def update
     @event = Event.find(params[:id])

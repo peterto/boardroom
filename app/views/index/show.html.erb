@@ -1,0 +1,34 @@
+<section id="content">
+  <section id="service_events_header" class="clearfix">
+    <section class="title">  
+      <h2><%= @service.name %></h2>
+      <p><%= @service.description %></p>
+    </section>
+  </section>
+
+  <section id="service_events_data">
+    <% if @events.empty? %>
+    <section class="allgood">
+      <%= image_tag 'big_up.jpg' %>
+      <p>No strange events, this service is up and running smoothly.</p>
+    </section>
+	  <% else %>
+    <table class="table table-bordered">
+    	<thead>
+    		<th class="highlight"><h4>Date (GMT)</h4></th>
+    		<th class="highlight"><h4>Status</h4></th>
+  			<th class="highlight"><h4>Message</h4></th>
+    	</thead>
+    	<tbody>
+    	  <% @events.each do |event| %>
+      	  <tr>
+      	   <td><%= time_ago_in_words(event.created_at) %> ago</td>
+      	   <td class="highlight"><%= image_tag event.image %></td>
+      	   <td><%= event.message %></td>
+      	  </tr>
+    	  <% end
+        end %>
+    	</tbody>
+    </table>
+  </section>
+</section>

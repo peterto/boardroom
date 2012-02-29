@@ -30,7 +30,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html {
         if @event.save
-          redirect_to service_events_path(@event), notice: 'Event was successfully created'
+          redirect_to service_events_path(@service), notice: 'Event was successfully created'
         else
           render action: 'new'
         end }

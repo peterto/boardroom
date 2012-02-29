@@ -4,9 +4,9 @@
     <%= f.input :description, :as => 'text', :input_html => { :class => "span4", :rows => 5 } %>
   <section>
     <label>* Image</label>
-    <% @statuses.each do |status| %>
-      <%= f.radio_button :image, status.image, :class => 'radio' %>
-      <%= image_tag status.image %>
+    <% @images.each do |image| %>
+      <%= f.radio_button :image, image.split("/")[3], :class => 'radio' %>
+      <%= image_tag image.split("/")[3] %>
     <% end %>
   </section>
   <%= f.button :submit, :class => "btn" %>

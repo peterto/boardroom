@@ -51,7 +51,7 @@ class ServicesController < ApplicationController
   # PUT /service/:id/
   def update
     if @service.update_attributes(params[:service])
-      redirect_to @service, notice: 'Service was succesfully updated'
+      redirect_to services_path, notice: 'Service was succesfully updated'
     else
       render action: 'edit'
     end

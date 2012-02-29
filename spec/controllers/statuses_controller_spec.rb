@@ -33,21 +33,21 @@ describe StatusesController do
     end
     
     it 'assigns the requested status to @status' do
-      get :show, :id => @status.id
+      get :edit, :id => @status.id
     end
   end
   
-  describe 'show' do
-    
-    before(:each) do
-      @status = Fabricate(:status)
-    end
-    
-    it 'assigns the requested status to @status' do
-      get :show, :id => @status.id
-      # Status.find(:status.id).id.should = @status.id
-    end
-  end
+  # describe 'show' do
+  #   
+  #   before(:each) do
+  #     @status = Fabricate(:status)
+  #   end
+  #   
+  #   it 'assigns the requested status to @status' do
+  #     get :show, :id => @status.id
+  #     # Status.find(:status.id).id.should = @status.id
+  #   end
+  # end
   
   describe 'create' do
     

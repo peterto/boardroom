@@ -33,7 +33,7 @@ describe StatusesController do
     end
     
     it 'assigns the requested status to @status' do
-      get :show, :id => @status.id
+      get :edit, :id => @status.id
     end
   end
   

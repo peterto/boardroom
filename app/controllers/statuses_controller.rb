@@ -1,9 +1,14 @@
 class StatusesController < ApplicationController
   before_filter :authenticate_admin!
   before_filter :get_all_statuses, :only => [:index, :new, :edit]
+  before_filter :get_all_images, :only => [:new, :edit]
   
-  def get_all_statuses 
+  def get_all_statuses
     @statuses = Status.all
+  end
+  
+  def get_all_images
+    @images = Dir.glob("app/assets/images/*.jpg")
   end
   
   def index

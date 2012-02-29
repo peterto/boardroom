@@ -1,6 +1,6 @@
 class StatusesController < ApplicationController
   before_filter :authenticate_admin!
-  before_filter :get_all_statuses, :only => [:index, :new, :edit]
+  before_filter :get_all_statuses, :only => [:new, :edit]
   before_filter :get_all_images, :only => [:new, :edit]
   
   def get_all_statuses
@@ -12,6 +12,11 @@ class StatusesController < ApplicationController
   end
   
   def index
+    @statuses = Status.all
+      respond_to do |format|
+        format.html
+        format.json { render :json => @statuses }
+      end
   end
   
   def new

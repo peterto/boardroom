@@ -41,6 +41,10 @@ describe Status do
         unique_name_status = Status.new(:name => "New Status")
         unique_name_status.should_not be_valid
         unique_name_status.save.should be_false
+        
+        unique_image_status = Status.new(:image => "service-up.jpg")
+        unique_image_status.should_not be_valid
+        unique_image_status.save.should be_false
       end
     end
   end

@@ -20,6 +20,10 @@ class EventsController < ApplicationController
   
   def show
     @event = Event.find(params[:id])
+    respond_to do |format|
+      format.html 
+      format.json {render @event }
+    end
   end
  
   
@@ -45,12 +49,22 @@ class EventsController < ApplicationController
   
   def update
     @event = Event.find(params[:id])
-    if @event.update_attributes(params[:event])
-      redirect_to @event, notice: 'Event was successfully updated'
-    else
-      render action: 'edit'
+    respond_to do |format|
+      format.html {
+        if @event.update_attributes(params[:event])
+          redirect_to @event, notice: 'Event was successfully updated'
+        else
+          render action: 'edit'
+        end }
+      format.json {
+        if @event.update_attributes(params[:event])
+           render :json => @service 
+        else
+           render :json => @services.errors 
+        end }
+      end
     end
-  end
+
   
   def destroy
     @event = Event.find(params[:id])

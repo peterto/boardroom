@@ -3,8 +3,8 @@
   	<thead>
   		<th class="left"><h3>Service</h3></th>
   		<th class="highlight"><h3>Current</h3></th>
-  		<% 5.times do |i| %>
-  			<th><h3><%= (Time.now - 60*60*24*(i+1)).to_formatted_s(:month_and_day) %></h3></th>
+  		<% 1.upto(5)do |i| %>
+  			<th><h3><%= (Time.now - i.day).to_formatted_s(:month_and_day) %></h3></th>
   		<% end %>
   	</thead>
   	<tbody>

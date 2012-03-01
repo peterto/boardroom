@@ -3,8 +3,8 @@
   	<thead>
   		<th class="left"><h3>Service</h3></th>
   		<th class="highlight"><h3>Current</h3></th>
-  		<% 5.times do |i| %>
-  			<th><h3><%= (Time.now - 60*60*24*(i+1)).to_formatted_s(:month_and_day) %></h3></th>
+  		<% 1.upto(5)do |i| %>
+  			<th><h3><%= (Time.now - i.day).to_formatted_s(:month_and_day) %></h3></th>
   		<% end %>
   	</thead>
   	<tbody>
@@ -13,7 +13,7 @@
   		<tr>
   			<td class="left"><%= link_to name, CGI::escape(name) %></td>
   			<td class="highlight">
-					<%= link_to image_tag(@statuses[name][0].image, {:class => 'sym', :alt => ''}), service_events_path(@statuses[name][0].service_id) %>
+					<%= link_to image_tag(@statuses[name][0].image, {:class => 'sym', :alt => ''}), CGI::escape(name) %>
   			</td>
   			<% 5.times do |i| %>
   				<td>

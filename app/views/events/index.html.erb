@@ -33,7 +33,8 @@
       	   <td><%= time_ago_in_words(event.created_at) %> ago</td>
       	   <td class="highlight"><%= image_tag event.image %></td>
       	   <td><%= event.message %></td>
-      	   <td><a href="" class="btn btn-danger">Delete</a></td>
+      	   <td><%= link_to 'Delete', service_event_path(@service, event),
+                       :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-danger' %></td>
       	  </tr>
     	  <% end
         end %>

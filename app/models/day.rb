@@ -16,11 +16,19 @@ class Day < ActiveRecord::Base
   
   # For status change
   def self.update_record_with(event)
-    # For testing purposes - use Rails.env.test? or Rails.env.development?
-      # First, determine if this is the most recent event of that particular day    
-      # Then, if it is, find the record of that particular day. If that record exists, update it with the event status
-    record = where("service_id = ?", event.service_id).order("date DESC").first
-    update(record.id, :status_id => event.status_id) unless record.nil?
+    # Get the record for that particular day and service
+    date = Date.parse(event.created_at.to_s)
+    record = where("service_id = ? AND date = ?", event.service_id, date).first
+    # Get the most recent event for this particular date and service_id
+    unless record.nil?
+      most_recent_event = Event.where("service_id = ?", event.service_id).order('created_at DESC').first
+      if most_recent_event
+        update(record.id, :status_id => most_recent_event.status_id)
+      else
+        # May need to refactor this to find the default status
+        update(record.id, :status_id => 1)
+      end
+    end
   end
   
   # For delayed job

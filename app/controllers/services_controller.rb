@@ -1,6 +1,8 @@
 class ServicesController < ApplicationController
+  prepend_before_filter :get_auth_token
   before_filter :get_service, :only => [:show, :edit, :update, :destroy]
   before_filter :authenticate_admin!
+
   def get_service
     begin
       @service = Service.find(params[:id])
@@ -74,4 +76,5 @@ class ServicesController < ApplicationController
       format.json { render :json => @service }
     end
   end
+  
 end

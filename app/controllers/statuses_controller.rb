@@ -1,4 +1,5 @@
 class StatusesController < ApplicationController
+  prepend_before_filter :get_auth_token
   before_filter :authenticate_admin!
   before_filter :get_all_statuses, :only => [:new, :edit]
   before_filter :get_all_images, :only => [:new, :edit]
@@ -54,4 +55,5 @@ class StatusesController < ApplicationController
     @status.destroy
     redirect_to statuses_url
   end
+  
 end

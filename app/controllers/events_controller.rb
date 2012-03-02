@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  prepend_before_filter :get_auth_token
   before_filter :get_service
   before_filter :authenticate_admin!, :except => :show
   

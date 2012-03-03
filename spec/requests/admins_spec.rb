@@ -2,10 +2,13 @@ require 'spec_helper'
 
 feature "Admins" do
   describe "should" do
-    scenario "create a new user when not logged in" do
+    before do
+      @admin = Fabricate(:admin)
       visit root_path
       click_link "Admin"
-      
+    end
+    
+    scenario "create a new user when not logged in" do
       click_link "Sign up"
       # save_and_open_page
       
@@ -25,10 +28,8 @@ feature "Admins" do
     end
     
     scenario "sign in with an existing user" do
-      admin = Fabricate(:admin)
-      visit services_path
-      fill_in 'admin_email', :with => admin.email
-      fill_in 'admin_password', :with => admin.password
+      fill_in 'admin_email', :with => @admin.email
+      fill_in 'admin_password', :with => @admin.password
       click_button "Sign in"
       
       page.current_path.should == services_path

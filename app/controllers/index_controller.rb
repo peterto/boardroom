@@ -1,6 +1,9 @@
 class IndexController < ApplicationController
   
   def index
+    # Need to check here if the day model needs to be recalculated
+    Day.add_new_record if Date.today != Day.get_recent_date
+    
     @statuses = Day.get_all_statuses
     @legend_statuses = Status.all
     respond_to do |format|

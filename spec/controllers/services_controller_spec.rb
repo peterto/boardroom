@@ -10,7 +10,6 @@ describe ServicesController do
     
     before(:each) do
       @service = Fabricate(:service)
-
     end
     
     it "assigns all services to @services" do

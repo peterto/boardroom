@@ -1,6 +1,6 @@
 RSpec.configure do |config|
   config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation # {:except => %w[status]}
+    DatabaseCleaner.strategy = :truncation, { :except => %w[days] }
   end
 
   config.before(:each) do

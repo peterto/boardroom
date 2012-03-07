@@ -2,7 +2,7 @@ class StatusesController < ApplicationController
   prepend_before_filter :get_auth_token
   before_filter :authenticate_admin!
   before_filter :get_all_statuses, :only => [:new, :edit]
-  before_filter :get_all_images, :only => [:new, :edit]
+  before_filter :get_all_images, :only => [:new, :edit, :create]
   
   def get_all_statuses
     @statuses = Status.all
@@ -35,7 +35,7 @@ class StatusesController < ApplicationController
   def create
     @status = Status.new(params[:status])
     if @status.save
-      redirect_to @status, notice: 'Status was successfully created'
+      redirect_to statuses_path, notice: 'Status was successfully created'
     else
       render action: 'new'
     end

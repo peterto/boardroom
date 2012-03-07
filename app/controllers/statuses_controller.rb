@@ -44,7 +44,7 @@ class StatusesController < ApplicationController
   def update
     @status = Status.find(params[:id])
     if @status.update_attributes(params[:status])
-      redirect_to @status, notice: 'Status was successfully updated'
+      redirect_to statuses_path, notice: 'Status was successfully updated'
     else
       render action: 'edit'
     end

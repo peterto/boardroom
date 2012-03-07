@@ -35,21 +35,25 @@ class Day < ActiveRecord::Base
   def self.add_new_record
     services = Service.all
     services.each do |service|
-      # Find the most recent event for a service
-      event = Event.where("service_id = ?", service.id).order("created_at DESC").limit(1).first
-
+      # Copy and insert the most recent day record for a particular service
+      record = Day.where("service_id = ?", service.id).order("date DESC").first
+      
       # Insert a day record for most recent event
-      create(:service_id => event.service_id, :status_id => event.status_id, :date => Date.parse(event.created_at.to_s))
-
+      create(:service_id => record.service_id, :status_id => record.status_id, :date => Date.today)
+      
       # Delete the last day record so that we always maintain six records per service
-      last_id = where("service_id = ?", event.service_id).order("date ASC").first.id
+      last_id = where("service_id = ?", service.id).order("date ASC").first.id
       delete(last_id)
     end
   end
   
   def self.get_all_statuses
     joins(:service, :status).
-    select("services.name, services.id AS service_id, statuses.image").
+    select("services.name, services.id AS service_id, statuses.image, days.date").
     order("days.service_id ASC, days.date DESC").group_by(&:name)
+  end
+  
+  def self.get_recent_date
+    order('date DESC').first.date
   end
 end

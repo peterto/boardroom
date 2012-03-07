@@ -10,12 +10,12 @@ describe Day do
     let(:service) { Fabricate(:service) }
     
     context "with no events" do
-
+      
       it "creates 6 records for a new service" do
         records = Day.where("service_id = ?", service.id)
         records.count.should == 6
       end
-
+      
     end
     
     context "with events" do
@@ -29,9 +29,20 @@ describe Day do
       end
       
       it "updates the appropriate day record when for a particular service when event is deleted" do
-        event.delete
+        event.save
+        event.destroy
         record = Day.where("service_id = ?", service.id).order("date DESC").first
         record.status_id.should == 1 # The default status: this probably needs to be defined in one place
+      end
+      
+      it "updates day records when delayed job is called" do
+        event.save
+        Day.add_new_record
+        records = Day.where("service_id = ?", service.id).order("date DESC")
+        
+        # Now, we should have two day records both with a status id of 2
+        records[0].status_id.should == 2
+        records[1].status_id.should == 2
       end
       
     end

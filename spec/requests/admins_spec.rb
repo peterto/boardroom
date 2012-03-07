@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature "Admins" do
-  describe "should" do
+  describe "should", :driver => :selenium do
     before do
       @admin = Fabricate(:admin)
       visit root_path
@@ -10,19 +10,12 @@ feature "Admins" do
     
     scenario "create a new user when not logged in" do
       click_link "Sign up"
-      # save_and_open_page
       
       fill_in 'admin_email', :with => Faker::Internet.email
       fill_in 'admin_password', :with => "password"
       fill_in 'admin_password_confirmation', :with => "password"
-      # save_and_open_page
       
       click_button "Sign up"
-      # save_and_open_page
-      #   fill_in 'admin_email', :with => Faker::Internet.email
-      #   fill_in 'admin_password', :with => "password"
-      #   click_button "Sign in"
-      #   save_and_open_page
       page.current_path.should == services_path
       
     end
@@ -31,7 +24,6 @@ feature "Admins" do
       fill_in 'admin_email', :with => @admin.email
       fill_in 'admin_password', :with => @admin.password
       click_button "Sign in"
-      
       page.current_path.should == services_path
     end
   

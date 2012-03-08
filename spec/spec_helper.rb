@@ -18,7 +18,7 @@ Spork.prefork do
   require 'rspec/rails'
   require 'rspec/autorun'
   require 'capybara/rspec'
-  # require 'capybara/firebug'
+  require 'capybara/firebug'
   require 'database_cleaner'
 
   # Requires supporting ruby files with custom matchers and macros, etc,
@@ -38,7 +38,7 @@ Spork.prefork do
     # If you're not using ActiveRecord, or you'd prefer not to run each of your
     # examples within a transaction, remove the following line or assign false
     # instead of true.
-    config.use_transactional_fixtures = false
+    # config.use_transactional_fixtures = false
 
     #Devise helpers
     config.include Devise::TestHelpers, :type => :controller

@@ -50,6 +50,5 @@ describe Day do
   end
   
   # We can now seed events as well, so be sure to test this properly
-  # Test that another record is added with the most recent event after running the delayed job. Ex: count the number of records for the most recent day. Should equal 2 instead of 1.
   # Test that the days table has the most recent event for each of the last 6 days.
 end

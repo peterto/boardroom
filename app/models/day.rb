@@ -35,6 +35,9 @@ class Day < ActiveRecord::Base
   def self.add_new_record
     services = Service.all
     services.each do |service|
+      # Refresh all records from today to the most recent date
+      # Delete as many records as were created
+      
       # Copy and insert the most recent day record for a particular service
       record = Day.where("service_id = ?", service.id).order("date DESC").first
       

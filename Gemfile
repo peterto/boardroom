@@ -25,6 +25,7 @@ group :test, :development do
   gem 'guard-spork'
   gem 'growl'
   gem 'capybara'
+  gem 'capybara-firebug'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'ffaker'

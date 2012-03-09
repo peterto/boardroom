@@ -59,6 +59,7 @@ class Day < ActiveRecord::Base
   end
   
   def self.get_recent_date
-    order('date DESC').first.date
+    order('date DESC').first
+    # order('date DESC').first.date
   end
 end

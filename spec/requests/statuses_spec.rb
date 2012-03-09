@@ -1,11 +1,10 @@
 require 'spec_helper'
 
 feature "statuses" do
-  describe "when", :driver => :selenium do
+  describe "when", :js => true do
     before do
-      visit root_path
-      @admin = Fabricate(:admin, :email => Faker::Internet.email)
-      
+      @admin = Fabricate(:admin)
+      visit "/"
       click_link "Admin"
       fill_in 'admin_email', :with => @admin.email
       fill_in 'admin_password', :with => @admin.password
@@ -14,7 +13,7 @@ feature "statuses" do
       page.current_path.should == services_path
     end
     
-    scenario "logged in, should create a new status" do
+    scenario "logged in, should create a new status", :js => true do
       click_link "Statuses"
       click_link "Create a Status"
       name = Faker::Lorem.word
@@ -34,7 +33,7 @@ feature "statuses" do
       
     end
     
-    scenario "logged in, destroy a status" do
+    scenario "logged in, destroy a status", :js => true do
       click_link "Statuses"
       click_link "Create a Status"
       name = Faker::Lorem.word
@@ -56,7 +55,7 @@ feature "statuses" do
     
     end
     
-    scenario "logged in, should update a status" do
+    scenario "logged in, should update a status", :js => true do
       click_link "Statuses"
       click_link "Create a Status"
       name = Faker::Lorem.word

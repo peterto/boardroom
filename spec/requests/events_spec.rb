@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-feature "Events" do
-  describe "when logged in", :driver => :selenium do
+feature "events" do
+  describe "when logged in", :js => true do
     before do
       @admin = Fabricate(:admin)
       visit "/"
@@ -32,7 +32,7 @@ feature "Events" do
       page.current_path.should == service_events_path(@service)
     end
     
-    scenario "should create a new event" do
+    scenario "should create a new event", :js => true do
       click_link "Update Status"
       @status = Fabricate(:status, :name => "Up")
       name = Faker::Product.product_name
@@ -45,12 +45,12 @@ feature "Events" do
       page.current_path.should == service_events_path(@service)
     end
     
-    scenario "should edit a service from the event page" do
+    scenario "should edit a service from the event page", :js => true do
       click_link "Edit Service"      
       page.current_path.should == edit_service_path(@service)
     end
     
-    scenario "should delete a service from the event page" do
+    scenario "should delete a service from the event page", :js => true do
       count = Service.count
       click_link "Delete Service"
       page.driver.browser.switch_to.alert.accept

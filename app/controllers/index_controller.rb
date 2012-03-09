@@ -10,12 +10,13 @@ class IndexController < ApplicationController
       format.html
       format.json {
         @statuses = Service.get_events
-        render :json => @statuses }
+        render :json => @statuses 
+      }
     end
   end
   
   def show
-    @service = Service.find_by_name(CGI::unescape(params[:service_name]))
+    @service = Service.find_by_name(CGI::unescape(parsams[:service_name]))
     @events = @service.get_all_statuses
   end
   

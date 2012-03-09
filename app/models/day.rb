@@ -36,17 +36,19 @@ class Day < ActiveRecord::Base
     services = Service.all
     services.each do |service|
       # Refresh all records from today to the most recent date
-      # Delete as many records as were created
+      latest_record = service.days.order("date DESC").first
+      latest_record_date = latest_record.date
       
-      # Copy and insert the most recent day record for a particular service
-      record = Day.where("service_id = ?", service.id).order("date DESC").first
+      # For every record we create, we will need to delete a record, so that we always maintain 6 records per service
+      records_to_delete = service.days.order("date ASC")
       
-      # Insert a day record for most recent event
-      create(:service_id => record.service_id, :status_id => record.status_id, :date => Date.today)
+      difference = (Date.today - latest_record_date).to_i
       
-      # Delete the last day record so that we always maintain six records per service
-      last_id = where("service_id = ?", service.id).order("date ASC").first.id
-      delete(last_id)
+      difference.times do |i|
+        create(:service_id => service.id, :status_id => latest_record.status_id, :date => Date.today - i.day)
+        # ID of record to destroy. Remember, i starts at one but the records array is 0-indexed.
+        delete(records_to_delete[i-1].id)
+      end
     end
   end
   

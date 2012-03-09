@@ -8,7 +8,7 @@ RSpec.configure do |config|
   config.before(:each) do
     if example.metadata[:js]
       Capybara.current_driver = :selenium
-      DatabaseCleaner.strategy = :truncation, { :except => %w[days] }
+      DatabaseCleaner.strategy = :truncation
     else
       DatabaseCleaner.strategy = :transaction
       DatabaseCleaner.start

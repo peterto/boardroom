@@ -7,14 +7,14 @@ class Day < ActiveRecord::Base
   
   # On service creation, create 6 day records
   def self.add_statuses_for(service)
-    # Insert six rows into the table for this service with status id of 4
+    # Insert six rows into the table for this service with status id of 1
     6.times do |i|
-      date = Date.today - i
+      date = Date.today - i.day
       create(:service_id => service.id, :status_id => 1, :date => date)
     end
   end
   
-  # For status change
+  # For status change and status deletion
   def self.update_record_with(event)
     # Get the record for that particular day and service
     date = Date.parse(event.created_at.to_s)
@@ -32,22 +32,23 @@ class Day < ActiveRecord::Base
   end
   
   # For delayed job
-  def self.add_new_record
+  # Refresh all records from today to the most recent date
+  def self.refresh_records
     services = Service.all
     services.each do |service|
-      # Refresh all records from today to the most recent date
-      latest_record = service.days.order("date DESC").first
+      latest_record = Day.where("service_id = ?", service.id).order("date DESC").first
       latest_record_date = latest_record.date
       
       # For every record we create, we will need to delete a record, so that we always maintain 6 records per service
-      records_to_delete = service.days.order("date ASC")
+      records_to_delete = Day.where("service_id = ?", service.id).order("date ASC")
       
+      # Count the number of records that we need to create
       difference = (Date.today - latest_record_date).to_i
       
       difference.times do |i|
         create(:service_id => service.id, :status_id => latest_record.status_id, :date => Date.today - i.day)
         # ID of record to destroy. Remember, i starts at one but the records array is 0-indexed.
-        delete(records_to_delete[i-1].id)
+        delete(records_to_delete[i].id)
       end
     end
   end

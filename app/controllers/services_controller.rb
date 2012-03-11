@@ -2,7 +2,7 @@ class ServicesController < ApplicationController
   prepend_before_filter :get_auth_token
   before_filter :get_service, :only => [:show, :edit, :update, :destroy]
   before_filter :authenticate_admin!
-
+  
   def get_service
     begin
       @service = Service.find(params[:id])
@@ -18,7 +18,8 @@ class ServicesController < ApplicationController
       format.html
       format.json { 
        # @services = @services.collect(&:name)
-        render :json => @services  }
+        render :json => @services  
+      }
     end
   end
   
@@ -49,24 +50,25 @@ class ServicesController < ApplicationController
           redirect_to services_path, notice: 'Service was successfully created'
         else
           render action: 'new'
-        end } 
-      format.json  if @service.save { render :json => @service }  
+        end 
+      }
+      format.json { render :json => @service if @service.save }
     end
   end
-
+  
   # PUT /service/:id/
   def update
     respond_to do |format|
       format.html {
         if @service.update_attributes(params[:service])
-         redirect_to services_path, notice: 'Service was succesfully updated'
+          redirect_to services_path, notice: 'Service was succesfully updated'
         else
-           render action: 'edit' 
+          render action: 'edit' 
         end  }
-      format.json  if @service.update_attributes(params[:service]) { render :json => @service } 
+      format.json { render :json => @service if @service.update_attributes(params[:service]) }
     end
-  end         
-
+  end
+  
   # DELETE /service/:id
   def destroy
     respond_to do |format|

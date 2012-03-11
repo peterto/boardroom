@@ -6,4 +6,4 @@ Status.create(:name => 'Up', :image => 'up.jpg', :description => 'The service is
 Status.create(:name => 'Down', :image => 'down.jpg', :description => 'The service is currently down')
 Status.create(:name => 'Warning', :image => 'warning.jpg', :description => 'The service is experiencing intermittent problems')
 
-Service.create(:name => 'Shaan Service', :description => 'This is my service yo!')
+# Service.create(:name => 'Shaan Service', :description => 'This is my service yo!')

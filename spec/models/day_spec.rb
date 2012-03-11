@@ -35,20 +35,20 @@ describe Day do
         record.status_id.should == 1 # The default status: this probably needs to be defined in one place
       end
       
-      it "updates day records when delayed job is called" do
-        event.save
-        Day.add_new_record
-        records = Day.where("service_id = ?", service.id).order("date DESC")
+      it "refreshes day records" do
+        latest_record = Day.where("service_id = ?", service.id).order("date DESC").first
+        Day.update(latest_record.id, :date => Date.today - 1.day)
         
-        # Now, we should have two day records both with a status id of 2
-        records[0].status_id.should == 2
-        records[1].status_id.should == 2
+        # Run the refresh records method
+        Day.refresh_records
+        
+        # Now, we should have 6 day records still and the latest being today's date
+        Day.where("service_id = ?", service.id).count.should == 6
+        Day.where("service_id = ?", service.id).order("date DESC").first.date.should == Date.today
       end
       
     end
     
   end
   
-  # We can now seed events as well, so be sure to test this properly
-  # Test that the days table has the most recent event for each of the last 6 days.
 end

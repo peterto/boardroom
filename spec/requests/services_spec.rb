@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 feature "services" do
-  describe "when", :driver => :selenium do
+  describe "when", :js => true do
     before do
-      visit root_path
-      @admin = Fabricate(:admin, :email => Faker::Internet.email)
-      
+      @admin = Fabricate(:admin)
+      visit "/"
+      click_link "Admin" 
       visit services_path
       fill_in 'admin_email', :with => @admin.email
       fill_in 'admin_password', :with => @admin.password
@@ -31,14 +31,14 @@ feature "services" do
 
     end
     
-    scenario "logged out should see the index page" do
+    scenario "logged out should see the index page", :js => true do
       pending "This should check to make sure the user is logged out when they click Log out"
       # click_link "Log out"
       # page.should have_content("Service")
       # page.current_path.should == root_path
     end
     
-    scenario "logged in should redirect to the services admin page" do
+    scenario "logged in should redirect to the services admin page", :js => true do
       page.should have_content("Create a Service")
       page.current_path.should == services_path
       # page.should 
@@ -49,13 +49,13 @@ feature "services" do
     #   page.current_path.should == service_path(service)
     # end
     
-    scenario "logged in should create a service and then delete the service" do
+    scenario "logged in should create a service and then delete the service", :js => true do
       click_link "Delete"
       page.driver.browser.switch_to.alert.accept
       page.current_path.should == services_path
     end
     
-    scenario "logged in should create a service and then edit the service" do
+    scenario "logged in should create a service and then edit the service", :js => true do
       click_link "Edit"
       # service = Service.last
       page.current_path.should == edit_service_path(@service)
@@ -74,7 +74,7 @@ feature "services" do
       page.current_path.should == services_path
     end
     
-    scenario "will not allow the user to create a duplicate service" do
+    scenario "will not allow the user to create a duplicate service", :js => true do
       click_link "Create a Service"
       page.current_path.should == new_service_path
       

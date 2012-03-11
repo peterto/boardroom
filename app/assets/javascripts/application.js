@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require_tree .
 
-$(function() {
+/* $(function() {
   if ($("#all_statuses").length > 0) {
     setTimeout(updateTableStatus, 10000);
   }

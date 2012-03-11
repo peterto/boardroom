@@ -12,7 +12,7 @@ describe IndexController do
   it "assigns all statuses from Day model to @statuses" do
     get :index
     assigns(:statuses).count.should == 1 # There should only be 1 array for one service
-    assigns(:statuses)[@service.name].count.should == 6 # There should be 6
+    assigns(:statuses)[@service.name].count.should == 6 # There should be 6 day records
   end
   
   it "updates day records if recent record date does not match current date" do

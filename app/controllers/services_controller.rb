@@ -18,7 +18,8 @@ class ServicesController < ApplicationController
       format.html
       format.json { 
        # @services = @services.collect(&:name)
-        render :json => @services  }
+        render :json => @services  
+      }
     end
   end
   
@@ -49,8 +50,9 @@ class ServicesController < ApplicationController
           redirect_to services_path, notice: 'Service was successfully created'
         else
           render action: 'new'
-        end } 
-      format.json  if @service.save { render :json => @service }  
+        end 
+      }
+      format.json { render :json => @service if @service.save }
     end
   end
 
@@ -59,11 +61,11 @@ class ServicesController < ApplicationController
     respond_to do |format|
       format.html {
         if @service.update_attributes(params[:service])
-         redirect_to services_path, notice: 'Service was succesfully updated'
+          redirect_to services_path, notice: 'Service was succesfully updated'
         else
-           render action: 'edit' 
+          render action: 'edit' 
         end  }
-      format.json  if @service.update_attributes(params[:service]) { render :json => @service } 
+      format.json if @service.update_attributes(params[:service]) { render :json => @service }
     end
   end         
 

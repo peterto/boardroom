@@ -7,14 +7,14 @@ class Day < ActiveRecord::Base
   
   # On service creation, create 6 day records
   def self.add_statuses_for(service)
-    # Insert six rows into the table for this service with status id of 4
+    # Insert six rows into the table for this service with status id of 1
     6.times do |i|
-      date = Date.today - i
+      date = Date.today - i.day
       create(:service_id => service.id, :status_id => 1, :date => date)
     end
   end
   
-  # For status change
+  # For status change and status deletion
   def self.update_record_with(event)
     # Get the record for that particular day and service
     date = Date.parse(event.created_at.to_s)
@@ -32,18 +32,24 @@ class Day < ActiveRecord::Base
   end
   
   # For delayed job
-  def self.add_new_record
+  # Refresh all records from today to the most recent date
+  def self.refresh_records
     services = Service.all
     services.each do |service|
-      # Copy and insert the most recent day record for a particular service
-      record = Day.where("service_id = ?", service.id).order("date DESC").first
+      latest_record = Day.where("service_id = ?", service.id).order("date DESC").first
+      latest_record_date = latest_record.date
       
-      # Insert a day record for most recent event
-      create(:service_id => record.service_id, :status_id => record.status_id, :date => Date.today)
+      # For every record we create, we will need to delete a record, so that we always maintain 6 records per service
+      records_to_delete = Day.where("service_id = ?", service.id).order("date ASC")
       
-      # Delete the last day record so that we always maintain six records per service
-      last_id = where("service_id = ?", service.id).order("date ASC").first.id
-      delete(last_id)
+      # Count the number of records that we need to create
+      difference = (Date.today - latest_record_date).to_i
+      
+      difference.times do |i|
+        create(:service_id => service.id, :status_id => latest_record.status_id, :date => Date.today - i.day)
+        # ID of record to destroy. Remember, i starts at one but the records array is 0-indexed.
+        delete(records_to_delete[i].id)
+      end
     end
   end
   
@@ -54,7 +60,6 @@ class Day < ActiveRecord::Base
   end
   
   def self.get_recent_date
-    order('date DESC').first
-    # order('date DESC').first.date
+    order('date DESC').first.date
   end
 end

@@ -17,7 +17,7 @@ describe IndexController do
   
   it "updates day records if recent record date does not match current date" do
     # First, modify the most recent record date
-    record = @service.days.order("date DESC").first
+    record = Day.where("service_id = ?", @service.id).order("date DESC").first
     Day.update(record.id, :date => Date.today - 1.day)
     
     # Then, check that the most recent record has today's date

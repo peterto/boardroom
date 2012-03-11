@@ -2,7 +2,7 @@ class IndexController < ApplicationController
   
   def index
     # Need to check here if the day model needs to be recalculated
-    Day.add_new_record if Date.today != Day.get_recent_date
+    Day.refresh_records if Date.today != Day.get_recent_date
     
     @statuses = Day.get_all_statuses
     @legend_statuses = Status.all
@@ -10,7 +10,7 @@ class IndexController < ApplicationController
       format.html
       format.json {
         @statuses = Service.get_events
-        render :json => @statuses 
+        render :json => @statuses
       }
     end
   end

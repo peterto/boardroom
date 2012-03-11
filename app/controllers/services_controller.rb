@@ -2,7 +2,7 @@ class ServicesController < ApplicationController
   prepend_before_filter :get_auth_token
   before_filter :get_service, :only => [:show, :edit, :update, :destroy]
   before_filter :authenticate_admin!
-
+  
   def get_service
     begin
       @service = Service.find(params[:id])
@@ -55,7 +55,7 @@ class ServicesController < ApplicationController
       format.json { render :json => @service if @service.save }
     end
   end
-
+  
   # PUT /service/:id/
   def update
     respond_to do |format|
@@ -65,10 +65,10 @@ class ServicesController < ApplicationController
         else
           render action: 'edit' 
         end  }
-      format.json if @service.update_attributes(params[:service]) { render :json => @service }
+      format.json { render :json => @service if @service.update_attributes(params[:service]) }
     end
-  end         
-
+  end
+  
   # DELETE /service/:id
   def destroy
     respond_to do |format|

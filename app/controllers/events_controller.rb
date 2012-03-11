@@ -23,7 +23,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     respond_to do |format|
       format.html 
-      format.json {render @event }
+      format.json { render @event }
     end
   end
  

@@ -31,14 +31,13 @@ describe Day do
       it "updates the appropriate day record when for a particular service when event is deleted" do
         event.save
         event.destroy
-        record = Day.where("service_id = ?", service.id).order("date DESC").first
+        record = service.days.order("date DESC").first
         record.status_id.should == 1 # The default status: this probably needs to be defined in one place
       end
       
       it "updates day records when delayed job is called" do
         event.save
-        Day.add_new_record
-        records = Day.where("service_id = ?", service.id).order("date DESC")
+        records = service.days.order("date DESC")        
         
         # Now, we should have two day records both with a status id of 2
         records[0].status_id.should == 2

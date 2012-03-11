@@ -32,22 +32,23 @@ class Day < ActiveRecord::Base
   end
   
   # For delayed job
+  # Refresh all records from today to the most recent date
   def self.add_new_record
     services = Service.all
     services.each do |service|
-      # Refresh all records from today to the most recent date
       latest_record = service.days.order("date DESC").first
       latest_record_date = latest_record.date
       
       # For every record we create, we will need to delete a record, so that we always maintain 6 records per service
       records_to_delete = service.days.order("date ASC")
       
+      # Count the number of records that we need to create
       difference = (Date.today - latest_record_date).to_i
       
       difference.times do |i|
-        create(:service_id => service.id, :status_id => latest_record.status_id, :date => Date.today - i.day)
+        create(:service_id => service, :status_id => latest_record.status_id, :date => Date.today - i.day)
         # ID of record to destroy. Remember, i starts at one but the records array is 0-indexed.
-        delete(records_to_delete[i-1].id)
+        delete(records_to_delete[i].id)
       end
     end
   end
@@ -59,7 +60,6 @@ class Day < ActiveRecord::Base
   end
   
   def self.get_recent_date
-    order('date DESC').first
-    # order('date DESC').first.date
+    order('date DESC').first.date
   end
 end

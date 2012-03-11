@@ -16,7 +16,7 @@ class IndexController < ApplicationController
   end
   
   def show
-    @service = Service.find_by_name(CGI::unescape(parsams[:service_name]))
+    @service = Service.find_by_name(CGI::unescape(params[:service_name]))
     @events = @service.get_all_statuses
   end
   

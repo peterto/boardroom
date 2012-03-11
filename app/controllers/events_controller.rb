@@ -13,6 +13,10 @@ class EventsController < ApplicationController
   
   def index
     @events = @service.get_all_statuses
+    respond_to do |format|
+      format.html 
+      format.json {render @events }
+    end
   end
   
   def new

@@ -7,14 +7,14 @@ class Day < ActiveRecord::Base
   
   # On service creation, create 6 day records
   def self.add_statuses_for(service)
-    # Insert six rows into the table for this service with status id of 4
+    # Insert six rows into the table for this service with status id of 1
     6.times do |i|
-      date = Date.today - i
+      date = Date.today - i.day
       create(:service_id => service.id, :status_id => 1, :date => date)
     end
   end
   
-  # For status change
+  # For status change and status deletion
   def self.update_record_with(event)
     # Get the record for that particular day and service
     date = Date.parse(event.created_at.to_s)

@@ -19,9 +19,6 @@ class Service < ActiveRecord::Base
     service_events
   end
   
-      
-  
-  
   private
   
   def add_days_records

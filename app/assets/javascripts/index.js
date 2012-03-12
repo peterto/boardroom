@@ -24,8 +24,8 @@ function updateTableStatus () {
 				element.attr("src", image);
 				$("#alert_message").show('fast');
 			}
-			
 		}
+		
+		//setTimeout(updateTableStatus, 5000);
 	});
-	setTimeout(updateTableStatus, 5000);
 }

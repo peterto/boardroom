@@ -26,6 +26,6 @@ function updateTableStatus () {
 			}
 		}
 		
-		//setTimeout(updateTableStatus, 5000);
+		setTimeout(updateTableStatus, 5000);
 	});
 }

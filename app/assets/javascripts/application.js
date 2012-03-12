@@ -13,15 +13,3 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-
-/* $(function() {
-  if ($("#all_statuses").length > 0) {
-    setTimeout(updateTableStatus, 10000);
-  }
-});
-
-function updateTableStatus () {
-	// Executes the following script
-	$.getScript("/events.js")
-	setTimeout(updateTableStatus, 10000);
-}

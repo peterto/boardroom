@@ -17,11 +17,11 @@ class ServicesController < ApplicationController
     respond_to do |format|
       format.html
       format.json { 
-       # @services = @services.collect(&:name)
-        render :json => @services  
-      }
+        @services = Service.get_events
+        render :json => @services }
     end
   end
+ 
   
   # GET /services/new
   def new

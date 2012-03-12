@@ -11,10 +11,7 @@ class IndexController < ApplicationController
       @statuses = Day.get_all_statuses
       respond_to do |format|
         format.html
-        format.json {
-          @statuses = Service.get_events
-          render :json => @statuses
-        }
+        format.json { render :json => @statuses }
       end
     end
   end

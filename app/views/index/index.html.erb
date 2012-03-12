@@ -1,4 +1,9 @@
-<section id="content">
+<section id="alert_message" class="alert" style="display:none;">
+  <p>Status Change!</p>
+  <%= link_to "Close", "#" %>
+</section>
+
+<section id="content">  
   <table id="all_statuses" class="table table-bordered">
   	<thead>
   		<th class="left"><h3>Service</h3></th>
@@ -10,14 +15,14 @@
   	<tbody>
   		<% unless @statuses.nil?
   			@statuses.keys.each do |name| %>
-  		<tr>
+  		<tr id="<%= name.gsub(/\s+/, "") %>">
   			<td class="left"><%= link_to name, CGI::escape(name) %></td>
   			<td class="highlight">
-					<%= link_to image_tag(@statuses[name][0].image, {:class => 'sym', :alt => ''}), CGI::escape(name) %>
+					<%= link_to image_tag(@statuses[name][0].image, {:class => "image0", :alt => ''}), CGI::escape(name) %>
   			</td>
   			<% 5.times do |i| %>
   				<td>
-						<%= image_tag(@statuses[name][i+1].image, {:class => 'sym', :alt => ''}) %>
+						<%= image_tag(@statuses[name][i+1].image, {:class => "sym", :alt => ''}) %>
           </td>
   			<% end %>
   		</tr>

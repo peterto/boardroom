@@ -9,4 +9,5 @@ RubyStashboard::Application.routes.draw do
 
   root :to => "index#index"
   match "/:service_name" => "index#show"
+  
 end

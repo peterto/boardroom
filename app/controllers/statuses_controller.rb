@@ -26,6 +26,10 @@ class StatusesController < ApplicationController
   
   def show
     @status = Status.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render :json => @statuse }
+    end
   end
   
   def edit
@@ -34,19 +38,37 @@ class StatusesController < ApplicationController
   
   def create
     @status = Status.new(params[:status])
-    if @status.save
-      redirect_to statuses_path, notice: 'Status was successfully created'
-    else
-      render action: 'new'
+    respond_to do |format| 
+      format.html {
+        if @status.save
+          redirect_to statuses_path, notice: 'Status was successfully created'
+        else
+          render action: 'new'
+        end }
+      format.json {
+        if @status.save
+          render :json => @status
+        else
+          render :json => @status.errors
+        end }
     end
   end
   
   def update
     @status = Status.find(params[:id])
-    if @status.update_attributes(params[:status])
-      redirect_to statuses_path, notice: 'Status was successfully updated'
-    else
-      render action: 'edit'
+    respond_to do |format|
+      format.html {
+      if @status.update_attributes(params[:status])
+        redirect_to statuses_path, notice: 'Status was successfully updated'
+      else
+        render action: 'edit'
+      end }
+      format.json {
+        if @status.update_attributes(params[:status])
+          render :json => @status
+        else
+          render :json => @status.errors
+        end }
     end
   end
   

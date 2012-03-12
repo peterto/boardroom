@@ -52,7 +52,13 @@ class ServicesController < ApplicationController
           render action: 'new'
         end 
       }
-      format.json { render :json => @service if @service.save }
+      format.json {
+        if @event.save 
+          render :json => @event 
+        else
+          render :json => @event.errors  
+        end 
+      }
     end
   end
   

@@ -55,7 +55,7 @@ class Day < ActiveRecord::Base
   
   def self.get_all_statuses
     joins(:service, :status).
-    select("services.name, services.id AS service_id, statuses.image, days.date").
+    select("services.name, services.id AS service_id, statuses.image, statuses.description, statuses.name AS status_name, days.date").
     order("days.service_id ASC, days.date DESC").group_by(&:name)
   end
   

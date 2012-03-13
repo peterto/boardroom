@@ -20,3 +20,8 @@ Demo
 ====
 Check out the [demo] (http://evening-robot-1631.herokuapp.com/) on heroku
 
+Contributors
+============
+* [Joshua Laroff] (https://github.com/opaw/)
+* [Peter To] (https://github.com/peterto/)
+* [Shaan Batra] (https://github.com/sb1752)
